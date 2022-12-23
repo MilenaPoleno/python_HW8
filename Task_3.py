@@ -17,14 +17,17 @@ class ZeroDenominator:
         self.denominator = denominator
 
     def zero_div(self):
-        if self.denominator != 0:
-            return self.numerator / self.denominator
-        else:
+        try:
+            result = self.numerator / self.denominator
+        except ZeroDivisionError:
             print("На ноль делить нельзя!")
-            return " "
+        else:
+            print(f"Результат операции - {result}")
+        finally:
+            print("Программа завершена")  
 
 
 user_1 = ZeroDenominator(5, 0)
-print(user_1.zero_div())
+user_1.zero_div()
 user_2 = ZeroDenominator(5, 2)
-print(user_2.zero_div())
+user_2.zero_div()
