@@ -10,14 +10,24 @@
 эту ситуацию и не завершиться с ошибкой.
 """
 
-class ZeroDenominator(Exception):
-    pass
+class ZeroDiv(Exception):
+    def __init__(self, txt):
+        self.txt = txt
 
-    x = int(input("Введите делимое: "))
-    y = int(input("Введите делитель: "))
 
+def my_error():
     try:
-        res = x / y
-        print(res)
-    except ZeroDivisionError:
-        print("На ноль делить нельзя!")
+        x = int(input('Введите делимое: '))
+        y = int(input('Введите делитель: '))
+        if y == 0:
+            raise ZeroDiv("На ноль делить нельзя!")
+        else:
+            res = x / y
+            return res
+    except ValueError:
+        return "Вы ввели не число"
+    except ZeroDiv as err:
+        return err
+
+
+print(my_error())
